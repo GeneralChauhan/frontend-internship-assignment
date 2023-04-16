@@ -1,0 +1,37 @@
+.trending-subjects{
+  margin-top: 30px !important;
+}
+
+.nav-link {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader-circle {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #ccc;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: loader-rotate 1s linear infinite;
+}
+
+@keyframes loader-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
