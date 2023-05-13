@@ -1,32 +1,18 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiService } from '../services/api.service';
-import { SearchResponse } from 'src/app/core/models/book-response.model';
+// import { Search } from '../models/search-response.model';
+// import book 
+import { Book } from '../models/book-response.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SearchService {
-  pageEmitter: EventEmitter<number>;
+  constructor(private http: HttpClient) { }
 
-  constructor(private apiService: ApiService) {
-    this.pageEmitter = new EventEmitter<number>();
-  }
-
-  getSearchResults(
-    query: string,
-    page: number = 1
-  ): Observable<SearchResponse> {
-    const limit = 10;
-    return this.apiService.get(
-      `/search.json?q=${query
-        .toLowerCase()
-        .split(' ')
-        .join('+')}&limit=${limit}&page=${page}`
-    );
-  }
-
-  emitPage(page: number) {
-    this.pageEmitter.emit(page);
+  getSearchResults(query: string): Observable<Book> {
+    return this.http.get<Book>(`http://openlibrary.org/search.json?q=${query}`);
   }
 }
+

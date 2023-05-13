@@ -1,7 +1,7 @@
-import { Inject, Injectable, } from '@angular/core';
+import { Injectable, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestOptions } from '../models/http-request-options.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 const ROOT_URL = 'https://openlibrary.org';
 
@@ -11,10 +11,20 @@ const ROOT_URL = 'https://openlibrary.org';
 export class ApiService {
   constructor(
     private httpClient: HttpClient
-  ) {}
+  ) { }
 
-  get<T>(url: string, config?: HttpRequestOptions): Observable<T> {
+  get<T>(url: string, limit?: number, offset?: number): Observable<T> {
     const apiPath = `${ROOT_URL}${url}`;
+    let params = new HttpParams();
+    if (limit) {
+      params = params.set('limit', limit.toString());
+    }
+    if (offset) {
+      params = params.set('offset', offset.toString());
+    }
+    const config = {
+      params: params
+    };
     return this.httpClient.get<T>(apiPath, config);
   }
 

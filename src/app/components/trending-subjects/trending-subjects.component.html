@@ -1,13 +1,18 @@
-<div class="trending-subjects">
-  <div *ngIf="isLoading" class="loader">
-    <div class="loader-circle"></div>
+<div class="loader-container" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+<div *ngIf="allBooks.length > 0">
+  <button routerLink="/" class="home">Home</button>
+  <front-end-internship-assignment-table-view [booksList]="allBooks" [subjectName]="subjectName"
+    [showDiv]="showDiv"></front-end-internship-assignment-table-view>
+  <div class="paginator">
+    <button (click)="onClickPrevious()" class="pagebtn">Previous</button>
+    <button (click)="onClickNext()" class="pagebtn">Next</button>
   </div>
-  <a class="nav-link" routerLink="/">Home</a>
-  <div *ngIf="allBooks.length > 0">
-    <front-end-internship-assignment-table-view
-      [booksList]="allBooks"
-      [subjectName]="subjectName"
-    ></front-end-internship-assignment-table-view>
+</div>
+<div *ngIf="allBooks.length == 0 && !isLoading">
+  <button routerLink="/" class="home">Home</button>
+  <div class="tw-h-full tw-flex tw-justify-center tw-items-center">
+    <i>Sorry, we couldn't find a book for "{{subjectName}}"</i>
   </div>
-  
 </div>

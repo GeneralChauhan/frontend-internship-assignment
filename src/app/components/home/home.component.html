@@ -1,58 +1,61 @@
-<div class="header">
-  <div class="tw-text-24-px tw-font-600">Open Books Library</div>
-  <div class="search-button">
-    <input
-      [formControl]="bookSearch"
-      (keyup.enter)="search()"
-      name="searchKey"
-      type="text"
-      placeholder="Search Books"
-      class="tw-border-0 tw-bg-inherit tw-w-8/12"
-    />
-    <div class="clear tw-w-1/12 tw-mx-2">
-      <mat-icon
-        class="tw-mt-[18px] tw-cursor-pointer tw-text-[20px]"
-        *ngIf="currentQuery"
-        (click)="clearCurrentQuery()"
-        aria-label="Clear Icon"
-        >clear</mat-icon
-      >
+<div class="main">
+  <div class="header">
+    <div class="logo">Open Books Library</div>
+    <div class="search-button">
+      <mat-icon class="search-icon" aria-label="Search Icon" (click)="onIconClick()">search</mat-icon>
+      <input [formControl]="bookSearch" name="searchKey" type="text" placeholder="Search Books..." class="search-input"
+        (keydown.enter)="onIconClick()">
+      <mat-icon class="clear-icon" aria-label="Clear Search Icon" (click)="clearSearch()"
+        *ngIf="bookSearch.value.length > 0">close</mat-icon>
     </div>
-    <mat-icon
-      class="tw-mt-16-px tw-cursor-pointer tw-mr-2 tw-text-[30px]"
-      (click)="search()"
-      aria-label="Search Icon"
-      >search</mat-icon
-    >
   </div>
-</div>
-<div class="tw-flex tw-flex-row tw-m-24-px">
-  <section class="trending-subjects">
-    <div class="tw-font-600 tw-text-24-px">Trending Subjects</div>
-    <ul class="tw-list-none tw-pl-0">
-      <li
-        class="tw-text-16-px tw-cursor-pointer tw-p-12-px"
-        *ngFor="let subject of trendingSubjects"
-        routerLink="/trending-subject/{{ subject.name }}"
-      >
-        {{ subject.name }}
-      </li>
-    </ul>
-  </section>
-  <section class="search-results">
-    <div *ngIf="searchResults.length > 0 && !isLoading && !errorMessage">
-      <front-end-internship-assignment-table-view
-        [searchResults]="searchResults"
-        [searchQuery]="query"
-        [currentPage]="currentPage"
-        [totalPages]="totalPages"
-      ></front-end-internship-assignment-table-view>
-    </div>
-    <h3 *ngIf="errorMessage" class="error">
-      {{ errorMessage }}
-    </h3>
-  </section>
-</div>
-<div *ngIf="isLoading" class="loader">
-  <div class="loader-circle"></div>
+
+  <div class="tw-flex tw-flex-col tw-justify-between tw-items-center md:tw-flex-row">
+    <section class="trending-subjects">
+      <div class="home-button">
+        <mat-icon class="home-icon" aria-label="Home Icon">home</mat-icon>
+        <div class="home-text">Home</div>
+      </div>
+      <ul class="tw-list-none tw-pl-0 trending-list">
+        <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects"
+          routerLink="/trending-subject/{{ subject.name }}">
+          {{ subject.name }}
+        </li>
+      </ul>
+    </section>
+
+
+    <section class="tw-flex-1 tw-flex tw-items-center tw-justify-center">
+      <div class="loader-container" *ngIf="isLoading">
+        <div class="loader"></div>
+      </div>
+      <div *ngIf="searchToggle == false; else Books" class="tw-w-full tw-text-center tw-mt-8">
+        <i>Search book by title or author . . .</i>
+      </div>
+      <ng-template #Books>
+        <div class="tw-flex-1">
+          <ng-container *ngIf="allBooks.length > 0 && !isLoading; else noBooksFound">
+            <div class="tw-mx-auto w-full">
+              <front-end-internship-assignment-table-view [booksList]="allBooks"
+                [subjectName]="subjectName"></front-end-internship-assignment-table-view>
+            </div>
+          </ng-container>
+
+          <ng-template #noBooksFound>
+            <div *ngIf="(wrongInput || allBooks.length == 0) && !isLoading" class="tw-h-full tw-flex tw-justify-center tw-items-center">
+              <i>Sorry, we couldn't find any books matching "{{wrongInput}}".</i>
+            </div>
+          </ng-template>
+          <footer *ngIf="allBooks.length > 0 && !isLoading"
+            class="tw-flex tw-items-center tw-justify-center tw-m-24-px ">
+            <div class="paginator">
+              <button (click)="onClickPrevious()" class="pagebtn">Previous</button>
+              <span class="pagecounter">&nbsp;({{currentPage}}-{{currentPage+9}})&nbsp;</span>
+              <button (click)="onClickNext()" class="pagebtn">Next</button>
+            </div>
+          </footer>
+        </div>
+      </ng-template>
+    </section>
+  </div>
 </div>

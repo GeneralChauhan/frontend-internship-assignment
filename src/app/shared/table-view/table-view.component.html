@@ -1,13 +1,6 @@
 <div class="tw-m-24-px">
-  <div *ngIf="subjectName" class="tw-mb-24-px tw-text-24-px">
-    Top {{ booksList.length }} book{{ booksList.length > 1 ? 's' : '' }} on
-    {{ subjectName }}
-  </div>
-  <div *ngIf="searchQuery" class="tw-mb-24-px tw-text-24-px">
-    Top {{ searchResults.length }} relevant result{{
-      searchResults.length > 1 ? 's' : ''
-    }}
-    for '{{ searchQuery }}'
+  <div class="tw-mb-24-px tw-text-24-px" *ngIf="showDiv == true">
+    Top {{ booksList.length }} book{{ booksList.length > 1? "s" : "" }} on {{subjectName }}
   </div>
 
   <ng-container>
@@ -16,80 +9,22 @@
         <tr class="table-row">
           <th class="header">Title and Sub Title</th>
           <th class="header">Author</th>
-          <th class="header">First Publish Year</th>
+          <th class="header">Year of Publication</th>
         </tr>
       </thead>
-      <tbody *ngIf="booksList" class="table-body trending">
+      <tbody class="table-body">
         <tr *ngFor="let book of booksList" class="row-data">
           <td>
-            <a
-              class="tw-no-underline"
-              href="https://openlibrary.org{{ book.key }}"
-              target="_blank"
-              >{{ book.title }}</a
-            >
+            <a class="tw-no-underline" href="https://openlibrary.org{{ book.key }}" target="_blank">{{ book.title }}</a>
           </td>
           <td>
-            {{ book.authors.length > 0 ? book.authors[0].name : 'Unknown' }}
+            {{ book.author_name? book.author_name.length > 3 ? (book.author_name | slice:0:3) + '...' :
+            book.author_name : !book.authors ? 'unknown' :
+            book.authors.length > 0 ? book.authors[0].name : "unknown" }}
           </td>
-          <td>{{ book.first_publish_year }}</td>
-        </tr>
-      </tbody>
-      <tbody *ngIf="searchResults" class="table-body search">
-        <tr *ngFor="let book of searchResults" class="row-data">
-          <td>
-            <a
-              class="tw-no-underline"
-              href="https://openlibrary.org{{ book.key }}"
-              target="_blank"
-              >{{ book.title }}</a
-            >
-          </td>
-          <td>
-            {{
-              book.author_name && book.author_name.length > 0
-                ? book.author_name[0]
-                : 'Unknown'
-            }}
-          </td>
-          <td>{{ book.first_publish_year }}</td>
+          <td>{{ book.first_publish_year > 0 ? book.first_publish_year : "unknown" }}</td>
         </tr>
       </tbody>
     </table>
-    <div *ngIf="searchResults.length > 0" class="pagination">
-      <button
-        class="pagination-btn"
-        (click)="goToPage(1)"
-        [disabled]="currentPage === 1"
-      >
-        First
-      </button>
-      <button
-        class="pagination-btn"
-        (click)="goToPage(currentPage - 1)"
-        [disabled]="currentPage === 1"
-      >
-        Prev
-      </button>
-
-      <span class="pagination-info"
-        >Page {{ currentPage }} of {{ totalPages }}</span
-      >
-
-      <button
-        class="pagination-btn"
-        (click)="goToPage(currentPage + 1)"
-        [disabled]="currentPage === totalPages"
-      >
-        Next
-      </button>
-      <button
-        class="pagination-btn"
-        (click)="goToPage(totalPages)"
-        [disabled]="currentPage === totalPages"
-      >
-        Last
-      </button>
-    </div>
   </ng-container>
 </div>

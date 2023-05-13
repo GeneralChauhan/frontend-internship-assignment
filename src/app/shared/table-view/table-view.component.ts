@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Book, Doc } from 'src/app/core/models/book-response.model';
-import { SearchService } from 'src/app/core/services/search.service';
+import { Book } from 'src/app/core/models/book-response.model';
 
 @Component({
   selector: 'front-end-internship-assignment-table-view',
@@ -9,17 +8,6 @@ import { SearchService } from 'src/app/core/services/search.service';
 })
 export class TableViewComponent {
   @Input() booksList: Book[] = [];
-  @Input() subjectName = '';
-
-  @Input() searchResults: Doc[] = [];
-  @Input() searchQuery = '';
-
-  @Input() currentPage = 1;
-  @Input() totalPages = 1;
-
-  constructor(private searchService: SearchService) {}
-
-  goToPage(page: number) {
-    this.searchService.emitPage(page);
-  }
+  @Input() subjectName: string = '';
+  @Input() showDiv: boolean = false;
 }

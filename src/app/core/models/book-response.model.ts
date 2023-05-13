@@ -38,6 +38,7 @@ export interface Book {
   lending_edition: string;
   lending_identifier: string;
   authors: Author[];
+  author_name: string[];
   first_publish_year: number;
   ia: string;
   public_scan: boolean;
@@ -51,46 +52,5 @@ export interface BookResponse {
   subject_type: string;
   work_count: number;
   works: Book[];
-}
-
-export interface Doc {
-  key: string;
-  type: string;
-  seed: string[];
-  title: string;
-  title_suggest: string;
-  title_sort: string;
-  edition_count: number;
-  edition_key: string[];
-  publish_date: string[];
-  publish_year: number[];
-  first_publish_year: number;
-  number_of_pages_median: number;
-  isbn: string[];
-  last_modified_i: number;
-  ebook_count_i: number;
-  ebook_access: string;
-  has_fulltext: boolean;
-  pulic_scan_b: boolean;
-  readinglog_count: number;
-  want_to_read_count: number;
-  currently_reading_count: number;
-  already_read_count: number;
-  publisher: string[];
-  author_key: string[];
-  author_name: string[] | undefined;
-  author_alternative_name: string[];
-  publisher_facet: string[];
-  version: number;
-  author_facet: string[];
-}
-
-export interface SearchResponse {
-  numFound: number;
-  start: number;
-  numFoundExact: boolean;
-  docs: Doc[];
-  num_found: number;
-  q: string;
-  offset: null;
+  docs: Book[];
 }

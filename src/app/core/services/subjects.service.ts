@@ -8,10 +8,13 @@ import { BookResponse } from 'src/app/core/models/book-response.model';
 })
 export class SubjectsService {
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
-  getAllBooks(subjectName: string): Observable<BookResponse> {
-    const limit = 10;
-    return this.apiService.get(`/subjects/${subjectName.toLowerCase().split(' ').join('_')}.json?limit=${limit}`);
+  getAllBooks(subjectName: string, limit?: number, offset?: number): Observable<BookResponse> {
+    return this.apiService.get(`/subjects/${subjectName.toLowerCase().split(' ').join('_')}.json?`, limit, offset);
+  }
+
+  searchForBooks(bookName: string, limit?: number, offset?: number): Observable<BookResponse> {
+    return this.apiService.get(`/search.json?q=${bookName.toLowerCase().split(' ').join('_')}`, limit, offset);
   }
 }
