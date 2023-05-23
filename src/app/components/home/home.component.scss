@@ -1,25 +1,45 @@
 .header {
-  @apply
-  tw-flex
-  tw-flex-col
-  tw-justify-between
-  tw-items-center
-  tw-p-12-px
-  md:tw-flex-row;
-  background: linear-gradient(146deg, #e1eeff 19.67%, #ffe4fb 127.56%);
+  
+  
+  // background: linear-gradient(146deg, #e1eeff 19.67%, #ffe4fb 127.56%);
+  // background-image: url();
+  // background-color: #333;
+  // opacity: 0.5;
+  overflow: hidden;
+  // background-clip: padding-box;
 }
 
-
+.hero-bg{
+  z-index: -4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  opacity: 0.5;
+  margin-top: -100px;
+}
 .header {
   background-color: #fff;
-  height: auto;
+  height: 400px;
+  // width: 80vw;
+  padding: 50px 150px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.hero-text{
+  margin-top: 80px;
 }
 
 .logo {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  flex-grow: 1;
+  font-size: 22px;
+  font-weight: 800;
+  // color: #333;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  // flex-grow: 1;
 }
 
 .search-button {
@@ -203,7 +223,10 @@
 .tw-text-16-px {
   font-size: 16px;
 }
-
+.tw-text-white {
+  color: #fff;
+  // font-size: 14px;
+}
 .tw-cursor-pointer {
   cursor: pointer;
 }

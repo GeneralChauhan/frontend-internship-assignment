@@ -1,12 +1,14 @@
-<div class="main">
+<div class="main ">
   <div class="header">
-    <div class="logo">Open Books Library</div>
+    <img class="hero-bg" src="https://images.pexels.com/photos/13347908/pexels-photo-13347908.jpeg?auto=compress&bri=5&cs=tinysrgb&fit=crop&h=500&w=2000" alt="a-great-design"/>
+    <div class="logo tw-text-white">Open Books Library</div>
+    <div class="hero-text" style="font-size: 33px;">The best way to find and read resources online about various topics</div>
     <div class="search-button">
       <mat-icon class="search-icon" aria-label="Search Icon" (click)="onIconClick()">search</mat-icon>
       <input [formControl]="bookSearch" name="searchKey" type="text" placeholder="Search Books..." class="search-input"
-        (keydown.enter)="onIconClick()">
+      (keydown.enter)="onIconClick()">
       <mat-icon class="clear-icon" aria-label="Clear Search Icon" (click)="clearSearch()"
-        *ngIf="bookSearch.value.length > 0">close</mat-icon>
+      *ngIf="bookSearch.value.length > 0">close</mat-icon>
     </div>
   </div>
 

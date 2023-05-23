@@ -38,10 +38,15 @@ module.exports = {
         '24-px': '24px'
       },
       fontFamily: {
-        'activ-grotisk': '"aktiv-grotesk", sans-serif'
+        'jakarta': '"Plus Jakarta Sans", sans-serif'
       },
       fontWeight: {
-        '600': '600'
+        '400': '400',
+        '500': '500',
+        '600': '600',
+        '700': '700',
+        '800': '800',
+        '900': '900'
       },
       height: {
         '40-px': '40px',

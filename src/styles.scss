@@ -11,7 +11,6 @@
 html,
 body {
   @apply
-  tw-font-activ-grotisk
   tw-text-14-px
   tw-box-border
   tw-antialiased;
@@ -22,10 +21,15 @@ body {
   @apply tw-h-full tw-w-full
 }
 
+
 body {
   @apply tw-m-0 tw-p-0
 }
 
+body{
+  font-family: 'Plus Jakarta Sans', sans-serif;
+
+}
 table {
   td,
   th {
