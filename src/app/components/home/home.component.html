@@ -29,7 +29,7 @@
       <div class="loader-container" *ngIf="isLoading">
         <div class="loader"></div>
       </div>
-      <div *ngIf="searchToggle == false; else Books" class="tw-w-full tw-text-center tw-mt-8">
+      <div *ngIf="searchToggle === false; else Books" class="tw-w-full tw-text-center tw-mt-8">
         <i>Search book by title or author . . .</i>
       </div>
       <ng-template #Books>
@@ -42,7 +42,7 @@
           </ng-container>
 
           <ng-template #noBooksFound>
-            <div *ngIf="(wrongInput || allBooks.length == 0) && !isLoading" class="tw-h-full tw-flex tw-justify-center tw-items-center">
+            <div *ngIf="(wrongInput || allBooks.length === 0) && !isLoading" class="tw-h-full tw-flex tw-justify-center tw-items-center">
               <i>Sorry, we couldn't find any books matching "{{wrongInput}}".</i>
             </div>
           </ng-template>
