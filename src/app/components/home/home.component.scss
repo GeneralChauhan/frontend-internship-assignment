@@ -1,13 +1,3 @@
-.header {
-  
-  
-  // background: linear-gradient(146deg, #e1eeff 19.67%, #ffe4fb 127.56%);
-  // background-image: url();
-  // background-color: #333;
-  // opacity: 0.5;
-  overflow: hidden;
-  // background-clip: padding-box;
-}
 
 .hero-bg{
   z-index: -4;
@@ -19,13 +9,27 @@
   object-fit: cover;
   background: #000;
   opacity: 0.5;
-  margin-top: -100px;
+  scale: 1;
+  margin-top: -400px;
 }
+// .header::after {
+//   position: absolute;
+//   z-index: -1;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 50vh;
+//   content: "";
+//   opacity: .5;
+//   background: #000;
+  
+// }
 .header {
-  background-color: #fff;
+  // background-color: black;
+background-image: url(https://images.pexels.com/photos/7381412/pexels-photo-7381412.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   height: 400px;
   // width: 80vw;
-  padding: 50px 150px;
+  padding: 50px 550px;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 .hero-text{
@@ -46,7 +50,9 @@
   display: flex;
   align-items: center;
   justify-content: center; 
-  background-color: red  !important;
+  height: 50px;
+  border-radius: 12px;
+  background-color: white !important;
 }
 
 .search-input {

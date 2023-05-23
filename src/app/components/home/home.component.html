@@ -1,12 +1,14 @@
 <div class="main ">
   <div class="header">
-    <img class="hero-bg" src="https://images.pexels.com/photos/13347908/pexels-photo-13347908.jpeg?auto=compress&bri=5&cs=tinysrgb&fit=crop&h=500&w=2000" alt="a-great-design"/>
+    <!-- <img class="hero-bg" src="https://images.pexels.com/photos/13347908/pexels-photo-13347908.jpeg?auto=compress&bri=5&cs=tinysrgb&fit=crop&h=500&w=2000" alt="a-great-design"/> -->
     <div class="logo tw-text-white">Open Books Library</div>
-    <div class="hero-text" style="font-size: 33px;">The best way to find and read resources online about various topics</div>
+    <div class="hero-text tw-text-white" style="font-size: 33px; font-weight: 600;">The best way to find and read resources online about various topics</div>
+    <br/>
+    <br/>
     <div class="search-button">
-      <mat-icon class="search-icon" aria-label="Search Icon" (click)="onIconClick()">search</mat-icon>
       <input [formControl]="bookSearch" name="searchKey" type="text" placeholder="Search Books..." class="search-input"
       (keydown.enter)="onIconClick()">
+      <mat-icon class="search-icon" aria-label="Search Icon" (click)="onIconClick()">search</mat-icon>
       <mat-icon class="clear-icon" aria-label="Clear Search Icon" (click)="clearSearch()"
       *ngIf="bookSearch.value.length > 0">close</mat-icon>
     </div>
@@ -20,8 +22,8 @@
       </div>
       <ul class="tw-list-none tw-pl-0 trending-list">
         <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects"
-          routerLink="/trending-subject/{{ subject.name }}">
-          {{ subject.name }}
+          routerLink="/trending-subject/{{ subject }}">
+          {{ subject }}
         </li>
       </ul>
     </section>

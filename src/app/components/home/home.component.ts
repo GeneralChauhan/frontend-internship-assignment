@@ -10,20 +10,34 @@ import { SubjectsService } from '../../core/services/subjects.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
+
 export class HomeComponent implements OnInit {
   bookSearch: FormControl;
   searchToggle: boolean;
   subjectName: string;
-  isLoading: boolean = false;
+  isLoading = false;
   allBooks: Book[] = [];
-  currentOffset: number = 0;
-  currentLimit: number = 10;
-  currentPage: number = 1;
-  wrongInput: string = '';
+  currentOffset = 0;
+  currentLimit = 10;
+  currentPage = 1;
+  wrongInput = '';
+
+  public trendingSubjects: Array<string>;
 
   constructor(
+    
     private subjectsService: SubjectsService,
+
   ) {
+    this.trendingSubjects = [
+      'JavaScript',
+      'CSS',
+      'HTML',
+      'Harry Potter',
+      'Crypto',
+      'Angular',
+      'WrongInputabcd'
+    ];
     this.bookSearch = new FormControl('');
     this.searchToggle = false;
     this.subjectName = '';
@@ -75,7 +89,7 @@ export class HomeComponent implements OnInit {
         const key = localStorage.key(i);
         const cachedData = JSON.parse(localStorage.getItem(key!)!);
         if (cachedData?.expiration && cachedData.expiration <= new Date().getTime()) {
-          localStorage.removeItem(key!);
+          localStorage.removeItem(null ?? key!);
         }
       }
     }, 24 * 60 * 60 * 1000); // 24 hours
@@ -106,15 +120,6 @@ export class HomeComponent implements OnInit {
     this.bookSearch.setValue('');
   }
 
-  trendingSubjects: Array<any> = [
-    { name: 'JavaScript' },
-    { name: 'CSS' },
-    { name: 'HTML' },
-    { name: 'Harry Potter' },
-    { name: 'Crypto' },
-    { name: 'Angular' },
-    { name: 'WrongInputabcd' },
-  ];
 
   ngOnInit(): void {
     this.bookSearch.valueChanges
