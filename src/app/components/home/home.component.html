@@ -9,9 +9,9 @@
     <div class="search-button" style="max-width: 550px;">
       <input [formControl]="bookSearch" name="searchKey" type="text" placeholder="Search Books"   class="search-input"
       (keydown.enter)="onIconClick()" style="border-right: 2px solid rgb(180, 180, 180); flex-grow: 1;">
-      <div style="scale:1.4; margin: 10px; margin-left: 21px;"  >
-        <mat-icon class="search-icon" style="margin-bottom: -0.5px;" aria-label="Search Icon" (click)="onIconClick()">search</mat-icon>
-      <mat-icon class="clear-icon" aria-label="Clear Search Icon" (click)="clearSearch()"
+      <div style="margin: 10px; margin-left: 21px; width: 10px;"  >
+        <mat-icon class="search-icon" style="margin-bottom: -0.5px;scale:1.4; " aria-label="Search Icon" (click)="onIconClick()" *ngIf="bookSearch.value.length === 0">search</mat-icon>
+      <mat-icon class="clear-icon" aria-label="Clear Search Icon" style="margin-left: -4px" (click)="clearSearch()"
       *ngIf="bookSearch.value.length > 0">close</mat-icon>
       </div>
     </div>
