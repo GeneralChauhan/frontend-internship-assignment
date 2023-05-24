@@ -29,7 +29,7 @@
 background-image: url(https://images.pexels.com/photos/7381412/pexels-photo-7381412.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   height: 400px;
   // width: 80vw;
-  padding: 50px 550px;
+  padding: 50px ;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 .hero-text{
@@ -45,7 +45,20 @@ background-image: url(https://images.pexels.com/photos/7381412/pexels-photo-7381
   left: 20px;
   // flex-grow: 1;
 }
+.mat-icon{
+  font-weight: 800;
+  color: gray !important;
+  height: 20px !important;
+ width: 20px !important;
+}
 
+input::-webkit-input-placeholder {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700 !important;
+  font-size: 18px;
+  color: gray;
+  // font-family: 'Plus', Arial, Helvetica, sans-serif;
+}
 .search-button {
   display: flex;
   align-items: center;
